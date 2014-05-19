@@ -10,7 +10,7 @@ Install:
 
 Use:
 
-    var Bitstamp = require('./bitstamp-ws');
+    var Bitstamp = require('bitstamp-ws');
 
     var ws = new Bitstamp();
     ws.on('trade', function(trade) {
