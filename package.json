@@ -1,0 +1,33 @@
+{
+  "name": "bitstamp-ws",
+  "version": "0.0.1",
+  "description": "Bitstamp WebSocket API wrapper",
+  "keywords": [
+    "bitstamp",
+    "btc",
+    "bitcoin",
+    "API",
+    "WebSocket"
+  ],
+  "author": {
+    "author": "Mike van Rossum <mike@mvr.me>"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "pusher-node-client": "0.0.8",
+    "lodash": "2.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/askmike/bitstamp-ws"
+  },
+  "main": "bitstamp.js",
+  "engines": {
+    "node": ">= 0.7"
+  },
+  "bugs": {
+    "url": "https://github.com/askmike/bitstamp-ws/issues",
+    "email": "mike@mvr.me"
+  },
+  "readmeFilename": "README.md"
+}
