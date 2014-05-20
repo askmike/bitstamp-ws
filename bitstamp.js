@@ -1,8 +1,8 @@
 var Pusher = require('pusher-node-client').PusherClient;
-var _ = require('lodash');
+var bindAll = require('lodash.bindall');
 
 var Bitstamp = function() {
-  _.bindAll(this);
+  bindAll(this);
 
   this.channel = null;
   this.client = new Pusher({
