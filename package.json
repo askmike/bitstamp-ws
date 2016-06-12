@@ -1,6 +1,6 @@
 {
   "name": "bitstamp-ws",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Bitstamp WebSocket API wrapper",
   "keywords": [
     "bitstamp",
