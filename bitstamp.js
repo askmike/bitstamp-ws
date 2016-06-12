@@ -1,28 +1,26 @@
-var Pusher = require('pusher-node-client').PusherClient;
-var bindAll = require('lodash.bindall');
+// var Pusher = require('pusher-node-client').PusherClient;
+var Pusher = require('pusher-js/node');
+
+var BITSTAMP_PUSHER_KEY = 'de504dc5763aeef9ff52';
 
 var Bitstamp = function(opts) {
-  bindAll(this);
-
   if (opts) {
     this.opts = opts;
   }
   else {
     this.opts = {
+      encrypted: true,
       live_trades: true,
       order_book: true,
       diff_order_book: true
     };
   }
 
-  this.client = new Pusher({
-    key: 'de504dc5763aeef9ff52',
-    appId: '',
-    secret: ''
+  this.client = new Pusher(BITSTAMP_PUSHER_KEY, {
+      encrypted: this.opts.encrypted
   });
 
-  this.client.on('connect', this.subscribe);
-  this.client.connect();
+  this.subscribe();
 }
 
 var util = require('util');
@@ -30,27 +28,27 @@ var EventEmitter = require('events').EventEmitter;
 util.inherits(Bitstamp, EventEmitter);
 
 Bitstamp.prototype.subscribe = function() {
-  if ('live_trades' in this.opts && this.opts.live_trades) {
-    this.client.subscribe('live_trades').on('trade', this.handleTrade);
+  if(this.opts.live_trades) {
+    this.client.subscribe('live_trades');
+    this.client.bind('trade', this.broadcast('trade'));
   }
-  if ('order_book' in this.opts && this.opts.order_book) {
-    this.client.subscribe('order_book').on('data', this.handleOrderBook);
+  if(this.opts.order_book) {
+    this.client.subscribe('order_book');
+    this.client.bind('data', this.broadcast('order_book'));
   }
-  if ('diff_order_book' && this.opts.diff_order_book) {
-    this.client.subscribe('diff_order_book').on('data', this.handleDiffOrderBook);
+  if(this.opts.diff_order_book) {
+    this.client.subscribe('diff_order_book');
+    this.client.bind('data', this.broadcast('diff_order_book'));
   }
 };
 
-Bitstamp.prototype.handleTrade = function(e) {
-  this.emit('trade', e);
+Bitstamp.prototype.broadcast = function(name) {
+  return function(e) {
+    this.emit(name, e)
+  }.bind(this);
 };
 
-Bitstamp.prototype.handleOrderBook = function(e) {
-  this.emit('order_book', e);
-};
 
-Bitstamp.prototype.handleDiffOrderBook = function(e) {
-  this.emit('diff_order_book', e);
-};
+// new Bitstamp;
 
 module.exports = Bitstamp;
