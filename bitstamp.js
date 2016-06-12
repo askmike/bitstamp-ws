@@ -23,8 +23,6 @@ var Bitstamp = function(opts) {
     };
   }
 
-  console.log(this.opts);
-
   this.client = new Pusher(BITSTAMP_PUSHER_KEY, {
       encrypted: this.opts.encrypted
   });
