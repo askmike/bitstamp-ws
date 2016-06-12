@@ -8,12 +8,22 @@ var Bitstamp = function(opts) {
   }
   else {
     this.opts = {
+      // force encrypted socket session
       encrypted: true,
+
+      // BTC/USD market:
       live_trades: true,
       order_book: true,
-      diff_order_book: true
+      diff_order_book: true,
+
+      // BTC/EUR market:
+      live_trades_btceur: false,
+      order_book_btceur: false,
+      diff_order_book_btceur: false
     };
   }
+
+  console.log(this.opts);
 
   this.client = new Pusher(BITSTAMP_PUSHER_KEY, {
       encrypted: this.opts.encrypted
@@ -38,17 +48,14 @@ Bitstamp.prototype.subscribe = function() {
 
   // BTC/USD events
   if(this.opts.live_trades) {
-    console.log('sub trades')
     this.client.subscribe('live_trades');
     this.client.bind('trade', this.broadcast('trade'));
   }
   if(this.opts.order_book) {
-    console.log('sub order_book')
     this.client.subscribe('order_book');
     this.client.bind('data', this.broadcast('data'));
   }
   if(this.opts.diff_order_book) {
-    console.log('sub diff_order_book')
     this.client.subscribe('diff_order_book');
     this.client.bind('data', this.broadcast('data'));
   }
@@ -71,8 +78,6 @@ Bitstamp.prototype.subscribe = function() {
 Bitstamp.prototype.broadcast = function(name) {
   if(this.bound[name])
     return function noop() {};
-
-  console.log('routing', name);
 
   this.bound[name] = true;
 
