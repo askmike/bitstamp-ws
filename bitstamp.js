@@ -10,7 +10,7 @@ var Bitstamp = function(opts) {
     this.opts = {
       // force encrypted socket session
       encrypted: true,
-
+      
       // BTC/USD market:
       live_trades: true,
       order_book: true,
@@ -20,6 +20,26 @@ var Bitstamp = function(opts) {
       live_trades_btceur: false,
       order_book_btceur: false,
       diff_order_book_btceur: false
+      
+      // EUR/USD market:
+      live_trades_eurusd: false,
+      order_book_eurusd: false,
+      diff_order_book_eurusd: false
+      
+      // XRP/USD market:
+      live_trades_xrpusd: false,
+      order_book_xrpusd: false,
+      diff_order_book_xrpusd: false
+      
+      // XRP/EUR market:
+      live_trades_xrpeur: false,
+      order_book_xrpeur: false,
+      diff_order_book_xrpeur: false
+      
+      // XRP/BTC market:
+      live_trades_xrpbtc: false,
+      order_book_xrpbtc: false,
+      diff_order_book_xrpbtc: false
     };
   }
 
@@ -69,6 +89,62 @@ Bitstamp.prototype.subscribe = function() {
   }
   if(this.opts.diff_order_book_btceur) {
     this.client.subscribe('diff_order_book_btceur');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  
+  // EUR/USD events
+  if(this.opts.live_trades_eurusd) {
+    this.client.subscribe('live_trades_eurusd');
+    this.client.bind('trade', this.broadcast('trade'));
+  }
+  if(this.opts.order_book_eurusd) {
+    this.client.subscribe('order_book_eurusd');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  if(this.opts.diff_order_book_eurusd) {
+    this.client.subscribe('diff_order_book_eurusd');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  
+  // XRP/USD events
+  if(this.opts.live_trades_xrpusd) {
+    this.client.subscribe('live_trades_xrpusd');
+    this.client.bind('trade', this.broadcast('trade'));
+  }
+  if(this.opts.order_book_xrpusd) {
+    this.client.subscribe('order_book_xrpusd');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  if(this.opts.diff_order_book_xrpusd) {
+    this.client.subscribe('diff_order_book_xrpusd');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  
+  // XRP/EUR events
+  if(this.opts.live_trades_xrpeur) {
+    this.client.subscribe('live_trades_xrpeur');
+    this.client.bind('trade', this.broadcast('trade'));
+  }
+  if(this.opts.order_book_xrpeur) {
+    this.client.subscribe('order_book_xrpeur');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  if(this.opts.diff_order_book_xrpeur) {
+    this.client.subscribe('diff_order_book_xrpeur');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  
+  // XRP/BTC events
+  if(this.opts.live_trades_xrpbtc) {
+    this.client.subscribe('live_trades_xrpxrpbtc');
+    this.client.bind('trade', this.broadcast('trade'));
+  }
+  if(this.opts.order_book_xrpbtc) {
+    this.client.subscribe('order_book_xrpbtc');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  if(this.opts.diff_order_book_xrpbtc) {
+    this.client.subscribe('diff_order_book_xrpbtc');
     this.client.bind('data', this.broadcast('data'));
   }
 };
