@@ -19,22 +19,22 @@ var Bitstamp = function(opts) {
       // BTC/EUR market:
       live_trades_btceur: false,
       order_book_btceur: false,
-      diff_order_book_btceur: false
+      diff_order_book_btceur: false,
       
       // EUR/USD market:
       live_trades_eurusd: false,
       order_book_eurusd: false,
-      diff_order_book_eurusd: false
+      diff_order_book_eurusd: false,
       
       // XRP/USD market:
       live_trades_xrpusd: false,
       order_book_xrpusd: false,
-      diff_order_book_xrpusd: false
+      diff_order_book_xrpusd: false,
       
       // XRP/EUR market:
       live_trades_xrpeur: false,
       order_book_xrpeur: false,
-      diff_order_book_xrpeur: false
+      diff_order_book_xrpeur: false,
       
       // XRP/BTC market:
       live_trades_xrpbtc: false,
