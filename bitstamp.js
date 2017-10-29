@@ -39,7 +39,37 @@ var Bitstamp = function(opts) {
       // XRP/BTC market:
       live_trades_xrpbtc: false,
       order_book_xrpbtc: false,
-      diff_order_book_xrpbtc: false
+      diff_order_book_xrpbtc: false,
+      
+      // LTC/USD market:
+      live_trades_ltcusd: false,
+      order_book_ltcusdc: false,
+      diff_order_book_ltcusd: false,
+      
+      // LTC/EUR market:
+      live_trades_ltceur: false,
+      order_book_ltceur: false,
+      diff_order_book_ltceur: false,
+      
+      // LTC/BTC market:
+      live_trades_ltcbtc: false,
+      order_book_ltcbtc: false,
+      diff_order_book_ltcbtc: false,
+      
+      // ETH/USD market:
+      live_trades_ethusd: false,
+      order_book_ethusd: false,
+      diff_order_book_ethusd: false,
+      
+      // ETH/EUR market:
+      live_trades_etheur: false,
+      order_book_etheur: false,
+      diff_order_book_etheur: false,
+      
+      // ETH/BTC market:
+      live_trades_ethbtc: false,
+      order_book_ethbtc: false,
+      diff_order_book_ethbtc: false
     };
   }
 
@@ -136,7 +166,7 @@ Bitstamp.prototype.subscribe = function() {
   
   // XRP/BTC events
   if(this.opts.live_trades_xrpbtc) {
-    this.client.subscribe('live_trades_xrpxrpbtc');
+    this.client.subscribe('live_trades_xrpbtc');
     this.client.bind('trade', this.broadcast('trade'));
   }
   if(this.opts.order_book_xrpbtc) {
@@ -145,6 +175,90 @@ Bitstamp.prototype.subscribe = function() {
   }
   if(this.opts.diff_order_book_xrpbtc) {
     this.client.subscribe('diff_order_book_xrpbtc');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  
+  //LTC/USD events
+  if(this.opts.live_trades_ltcusd) {
+    this.client.subscribe('live_trades_ltcusd');
+    this.client.bind('trade', this.broadcast('trade'));
+  }
+  if(this.opts.order_book_ltcusd) {
+    this.client.subscribe('order_book_ltcusd');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  if(this.opts.diff_order_book_ltcusd) {
+    this.client.subscribe('diff_order_book_ltcusd');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  
+  //LTC/EUR events
+  if(this.opts.live_trades_ltceur) {
+    this.client.subscribe('live_trades_ltceur');
+    this.client.bind('trade', this.broadcast('trade'));
+  }
+  if(this.opts.order_book_ltceur) {
+    this.client.subscribe('order_book_ltceur');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  if(this.opts.diff_order_book_ltceur) {
+    this.client.subscribe('diff_order_book_ltceur');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  
+  //LTC/BTC events
+  if(this.opts.live_trades_ltcbtc) {
+    this.client.subscribe('live_trades_ltcbtc');
+    this.client.bind('trade', this.broadcast('trade'));
+  }
+  if(this.opts.order_book_ltcbtc) {
+    this.client.subscribe('order_book_ltcbtc');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  if(this.opts.diff_order_book_ltcbtc) {
+    this.client.subscribe('diff_order_book_ltcbtc');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  
+  //ETH/USD events
+  if(this.opts.live_trades_ethusd) {
+    this.client.subscribe('live_trades_ethusd');
+    this.client.bind('trade', this.broadcast('trade'));
+  }
+  if(this.opts.order_book_ethusd) {
+    this.client.subscribe('order_book_ethusd');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  if(this.opts.diff_order_book_ethusd) {
+    this.client.subscribe('diff_order_book_ethusd');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  
+  //ETH/EUR events
+  if(this.opts.live_trades_etheur) {
+    this.client.subscribe('live_trades_etheur');
+    this.client.bind('trade', this.broadcast('trade'));
+  }
+  if(this.opts.order_book_etheur) {
+    this.client.subscribe('order_book_etheur');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  if(this.opts.diff_order_book_etheur) {
+    this.client.subscribe('diff_order_book_etheur');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  
+  //ETH/BTC events
+  if(this.opts.live_trades_ethbtc) {
+    this.client.subscribe('live_trades_ethbtc');
+    this.client.bind('trade', this.broadcast('trade'));
+  }
+  if(this.opts.order_book_ethbtc) {
+    this.client.subscribe('order_book_ethbtc');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  if(this.opts.diff_order_book_ethbtc) {
+    this.client.subscribe('diff_order_book_ethbtc');
     this.client.bind('data', this.broadcast('data'));
   }
 };
