@@ -69,7 +69,22 @@ var Bitstamp = function(opts) {
       // ETH/BTC market:
       live_trades_ethbtc: false,
       order_book_ethbtc: false,
-      diff_order_book_ethbtc: false
+      diff_order_book_ethbtc: false,
+
+      // BCH/USD market:
+      live_trades_bchusd: false,
+      order_book_bchusd: false,
+      diff_order_book_bchusd: false,
+
+      // BCH/EUR market:
+      live_trades_bcheur: false,
+      order_book_bcheur: false,
+      diff_order_book_bcheur: false,
+
+      // BCH/BTC market:
+      live_trades_btceur: false,
+      order_book_btceur: false,
+      diff_order_book_btceur: false
     };
   }
 
@@ -261,6 +276,49 @@ Bitstamp.prototype.subscribe = function() {
     this.client.subscribe('diff_order_book_ethbtc');
     this.client.bind('data', this.broadcast('data'));
   }
+
+  //BCH/USD events
+  if(this.opts.live_trades_bchusd) {
+    this.client.subscribe('live_trades_bchusd');
+    this.client.bind('trade', this.broadcast('trade'));
+  }
+  if(this.opts.order_book_bchusd) {
+    this.client.subscribe('order_book_bchusd');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  if(this.opts.diff_order_book_bchusd) {
+    this.client.subscribe('diff_order_book_bchusd');
+    this.client.bind('data', this.broadcast('data'));
+  }
+
+  //BCH/EUR events
+  if(this.opts.live_trades_bcheur) {
+    this.client.subscribe('live_trades_bcheur');
+    this.client.bind('trade', this.broadcast('trade'));
+  }
+  if(this.opts.order_book_bcheur) {
+    this.client.subscribe('order_book_bcheur');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  if(this.opts.diff_order_book_bcheur) {
+    this.client.subscribe('diff_order_book_bcheur');
+    this.client.bind('data', this.broadcast('data'));
+  }
+
+  //BCH/BTC events
+  if(this.opts.live_trades_bchbtc) {
+    this.client.subscribe('live_trades_bchbtc');
+    this.client.bind('trade', this.broadcast('trade'));
+  }
+  if(this.opts.order_book_bchbtc) {
+    this.client.subscribe('order_book_bchbtc');
+    this.client.bind('data', this.broadcast('data'));
+  }
+  if(this.opts.diff_order_book_bchbtc) {
+    this.client.subscribe('diff_order_book_bchbtc');
+    this.client.bind('data', this.broadcast('data'));
+  }
+
 };
 
 Bitstamp.prototype.broadcast = function(name) {

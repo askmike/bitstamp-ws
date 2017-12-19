@@ -1,6 +1,6 @@
 {
   "name": "bitstamp-ws",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Bitstamp WebSocket API wrapper",
   "keywords": [
     "bitstamp",
@@ -12,6 +12,9 @@
   "author": {
     "author": "Mike van Rossum <mike@mvr.me>"
   },
+  "contributors": [
+    "Erland Lewin <erland@lewin.nu>"
+  ],
   "license": "MIT",
   "dependencies": {
     "pusher-js": "3.1.x"
